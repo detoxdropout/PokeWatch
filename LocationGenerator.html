@@ -74,8 +74,19 @@
 		function addNewMarker(Lat,Lng) {
 			var marker = new google.maps.Marker({
 				position: {"lat":Lat,"lng":Lng},
-				map: map
+				map: map,
+				//draggable: true,
+				title: "Position: " + (locations.length+1) + " Coords: " +Lat +", "+ Lng
 			});
+			var circle = new google.maps.Circle({
+				map: map,
+				radius: 70,    // distance in meters
+				fillColor: '#66ff66',
+				fillOpacity: 0.5,
+				strokeWeight: 0,
+				editable: false
+			});
+			circle.bindTo('center', marker, 'position');
 			locations.push({
 				"Latitude": Lat,
 				"Longitude": Lng
